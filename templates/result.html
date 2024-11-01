@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ operation }} Complete</h1>
+        <p>Your file has been processed successfully. <a href="{{ file_url }}">Download here</a>.</p>
+        <a href="{{ url_for('index') }}">Go back to upload another file</a>
+    </div>
+</body>
+</html>
+

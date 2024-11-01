@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>File Compressor and Decompressor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script>
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+        }
+
+        function displayFileName(input, displayId) {
+            const fileDisplay = document.getElementById(displayId);
+            if (input.files && input.files[0]) {
+                fileDisplay.innerHTML = `
+                    <div class="file-display">
+                        <i class="fa fa-file"></i>
+                        <span>${input.files[0].name}</span>
+                    </div>
+                `;
+            }
+        }
+    </script>
+    <!-- Font Awesome for File Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>File Compressor & Decompressor</h1>
+        
+        <div class="section">
+            <h2>Compress a File</h2>
+            <form action="/compress" method="post" enctype="multipart/form-data" onsubmit="showLoading()">
+                <label for="file1" class="custom-file-upload">Choose File for Compression</label>
+                <input type="file" name="file" id="file1" required onchange="displayFileName(this, 'file-display1')">
+                <div id="file-display1"></div>
+                <button type="submit">Compress</button>
+            </form>
+        </div>
+        
+        <div class="section">
+            <h2>Decompress a File</h2>
+            <form action="/decompress" method="post" enctype="multipart/form-data" onsubmit="showLoading()">
+                <label for="file2" class="custom-file-upload">Choose File for Decompression</label>
+                <input type="file" name="file" id="file2" required onchange="displayFileName(this, 'file-display2')">
+                <div id="file-display2"></div>
+                <button type="submit">Decompress</button>
+            </form>
+        </div>
+        
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Processing...</p>
+        </div>
+    </div>
+</body>
+</html>
